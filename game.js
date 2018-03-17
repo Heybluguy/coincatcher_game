@@ -63,11 +63,11 @@ function createBadge() {
 function itemHandler(player, item) {
   item.kill();
   if (item.key === 'coin') {
-    currentScore = currentScore + 10;
+    currentScore += 10;
   } else if (item.key === 'star') {
-    currentScore = currentScore + 25;
+     currentScore += 25;
   } else if (item.key === 'poison') {
-    lifeCounter = lifeCounter - 1;
+    lifeCounter -= 1;
   }
 
   if (currentScore > winningScore) {
