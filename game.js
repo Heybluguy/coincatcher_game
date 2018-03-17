@@ -21,7 +21,7 @@ function addItems() {
 // add platforms to the game
 function addPlatforms() {
   platforms = game.add.physicsGroup();
-  platforms.create(450, 150, 'platform');
+  platforms.create(450, 550, 'platform');
   platforms.setAll('body.immovable', true);
 }
 
@@ -45,7 +45,7 @@ function itemHandler(player, item) {
   item.kill();
   currentScore = currentScore + 10;
   if (currentScore === winningScore) {
-      createBadge();
+    createBadge();
   }
 }
 
@@ -58,14 +58,14 @@ function badgeHandler(player, badge) {
 // setup game when the web page loads
 window.onload = function () {
   game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update, render: render });
-  
+
   // before the game begins
   function preload() {
     game.stage.backgroundColor = '#5db1ad';
-    
+
     //Load images
     game.load.image('platform', 'platform_1.png');
-    
+
     //Load spritesheets
     game.load.spritesheet('player', 'chalkers.png', 48, 62);
     game.load.spritesheet('coin', 'coin.png', 36, 44);
@@ -115,7 +115,7 @@ window.onload = function () {
     else {
       player.animations.stop();
     }
-    
+
     if (jumpButton.isDown && (player.body.onFloor() || player.body.touching.down)) {
       player.body.velocity.y = -400;
     }
