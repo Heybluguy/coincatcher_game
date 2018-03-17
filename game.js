@@ -150,13 +150,14 @@ window.onload = function () {
     }
 
     if (won) {
-      winningMessage.text = "YOU WIN!!!";
       player.kill();
+      winningMessage.text = "YOU WIN!!!";
+
     }
 
     if (lose) {
-      losingMessage.text = "YOU LOSE!!!";
       player.kill();
+      losingMessage.text = "YOU LOSE!!!";
     }
 
   }
