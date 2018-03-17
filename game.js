@@ -6,10 +6,15 @@ var items;
 var cursors;
 var jumpButton;
 var text;
+var lifeText;
 var winningMessage;
+var losingMessage;
 var won = false;
+var lose = false;
+var lifeCounter = 3;
 var currentScore = 0;
 var winningScore = 100;
+var losingScore = 0;
 
 function addItems() {
   items = game.add.physicsGroup();
@@ -57,16 +62,20 @@ function createBadge() {
 
 function itemHandler(player, item) {
   item.kill();
-  if (item.key == 'coin') {
+  if (item.key === 'coin') {
     currentScore = currentScore + 10;
-  } else if (item.key == 'poison') {
-    currentScore = currentScore - 25;
-  } else if (item.key == 'star') {
+  } else if (item.key === 'star') {
     currentScore = currentScore + 25;
+  } else if (item.key === 'poison') {
+    lifeCounter = lifeCounter - 1;
   }
 
-  if (currentScore === winningScore) {
+  if (currentScore > winningScore) {
     createBadge();
+  }
+
+  if (lifeCounter === losingScore) {
+    lose = true;
   }
 }
 
@@ -105,12 +114,16 @@ window.onload = function () {
     cursors = game.input.keyboard.createCursorKeys();
     jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     text = game.add.text(16, 16, "SCORE: " + currentScore, { font: "bold 24px Arial", fill: "white" });
+    lifeText = game.add.text(700, 16, "LIFE: " + lifeCounter, { font: "bold 24px Arial", fill: "white" });
     winningMessage = game.add.text(game.world.centerX, 275, "", { font: "bold 48px Arial", fill: "white" });
     winningMessage.anchor.setTo(0.5, 1);
+    losingMessage = game.add.text(game.world.centerX, 275, "", { font: "bold 48px Arial", fill: "white" });
+    losingMessage.anchor.setTo(0.5, 1);
   }
 
   function update() {
     text.text = "SCORE: " + currentScore;
+    lifeText.text = "LIFE: " + lifeCounter;
     game.physics.arcade.collide(player, platforms);
     game.physics.arcade.overlap(player, items, itemHandler);
     game.physics.arcade.overlap(player, badges, badgeHandler);
@@ -138,7 +151,14 @@ window.onload = function () {
 
     if (won) {
       winningMessage.text = "YOU WIN!!!";
+      player.kill();
     }
+
+    if (lose) {
+      losingMessage.text = "YOU LOSE!!!";
+      player.kill();
+    }
+
   }
 
   function render() {
