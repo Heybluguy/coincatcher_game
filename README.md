@@ -9,3 +9,4 @@ Because of how the Phaser.JS library handles files, you need to be running a web
 The <a href="https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=en" target="_blank">Web Server for Chrome</a> is an easy-to-install extension for Chrome that lets you select a folder on your computer (like the folder with the game files in them) and deliver them through a basic web server. This is probably the easiest way to get started — but you'll need to use the Chrome web browser.
 If you don't want to use Chrome, check out a simple guide for getting a local web server set up for several other methods.
 
+If you don't want to use Chrome, check out <a href="https://gist.github.com/jgravois/5e73b56fa7756fd00b89" target="_blank">a simple guide for getting a local web server set up</a> for several other methods.
